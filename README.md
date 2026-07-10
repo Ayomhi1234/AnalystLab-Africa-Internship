@@ -137,18 +137,6 @@ This folder contains two EDA projects completed during Week 1-2 of the internshi
 
 ---
 
-## Repository Structure
-```
-internship/
-├── README.md
-├── titanic/
-│   ├── Titanic_EDA.ipynb
-│   └── titanic_cleaned.csv
-├── housing/
-│   ├── Housing_EDA.ipynb
-│   └── Housing_cleaned.csv
-```
-
 ## Tools & Technologies Used
 - **Python:** Pandas, NumPy, Matplotlib, Seaborn
 - **Jupyter Notebook:** For analysis, visualization, and documentation
