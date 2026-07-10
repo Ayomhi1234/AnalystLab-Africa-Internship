@@ -176,6 +176,3 @@ This folder contains two EDA projects completed during Week 1-2 of the internshi
 5. **Visualization enables insight** — Plots reveal patterns that raw numbers often obscure
 
 ---
-
-## Contact
-For questions or feedback on this analysis, please reach out to the project author.
