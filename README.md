@@ -176,3 +176,109 @@ This folder contains two EDA projects completed during Week 1-2 of the internshi
 5. **Visualization enables insight** — Plots reveal patterns that raw numbers often obscure
 
 ---
+
+# Week 3: Statistics & Probability Analysis
+
+## Objective
+Understand statistical concepts in data science through comprehensive analysis of two datasets: Titanic survival data and Housing price prediction data.
+
+---
+
+## Datasets Analyzed
+
+### 1. Titanic Dataset
+- **Records:** 891 passengers
+- **Target:** Survival (binary: died/survived)
+- **Key Variables:** Pclass, Sex, Age, Fare, Embarked
+
+### 2. Housing Price Prediction Dataset
+- **Records:** 545 properties
+- **Target:** Price (continuous)
+- **Key Variables:** Area, Bedrooms, Bathrooms, Stories, Parking
+
+---
+
+## Analysis Completed
+
+### Descriptive Statistics
+- Calculated mean, median, variance, standard deviation
+- Identified quartiles and ranges
+- Grouped analysis by categorical variables
+- Created distributions and visualizations
+
+### Probability Distributions
+- Tested normality using Shapiro-Wilk test
+- Titanic: Age and Fare are right-skewed, not normally distributed
+- Housing: Price and Area are right-skewed, not normally distributed
+
+### Hypothesis Testing
+
+**Titanic (Categorical variables - Chi-Square Test):**
+- Sex vs Survival: p-value = 1.20e-58 (SIGNIFICANT)
+- Pclass vs Survival: p-value = 4.55e-23 (SIGNIFICANT)
+- Fare vs Survival: t-test p-value = 6.12e-15 (SIGNIFICANT)
+
+**Housing (Continuous variables - Spearman Correlation):**
+- Area vs Price: correlation = 0.6, p-value = 3.13e-55 (SIGNIFICANT)
+- Bathrooms vs Price: correlation = 0.48, p-value = 9.65e-33 (SIGNIFICANT)
+- All tested variables significantly correlate with Price
+
+### Correlation vs Causation
+
+**Titanic Findings:**
+- Gender was strongest causal factor (evacuation priority)
+- Class was secondary factor (access and priority)
+- Fare was correlated but confounded by Class—not a direct cause
+
+**Housing Findings:**
+- Area is primary cause of price (0.6 correlation)
+- Bathrooms is secondary cause (0.48 correlation)
+- Both independently drive housing prices
+
+---
+
+## Key Insights
+
+### Titanic
+1. Women had 74% survival rate vs men at 19%—gender overrode wealth
+2. A 3rd-class woman (50%) had better odds than a 1st-class man (36.9%)
+3. Evacuation protocol prioritized gender > class > wealth
+
+### Housing
+1. Larger properties cost significantly more (Area: 0.6 correlation)
+2. More bathrooms indicate higher-value properties (0.48 correlation)
+3. All features (Area, Bathrooms, Bedrooms, Stories, Parking) significantly affect price
+4. Market prices based on space and amenities
+
+---
+
+## Methodology
+
+- **Descriptive Stats:** `.describe()`, `.mean()`, `.median()`, `.groupby()`
+- **Distributions:** Histograms, Shapiro-Wilk normality test
+- **Hypothesis Testing:** Chi-Square (categorical), Spearman correlation (continuous, non-normal)
+- **Visualizations:** Histograms, box plots, scatter plots, heatmaps
+- **Statistical Significance:** p-value threshold = 0.05
+
+---
+
+## Deliverables
+
+-  Jupyter Notebook: Statistical analysis with code and visualizations
+-  Summary Reports: Markdown summaries for each section
+-  Correlation Heatmaps: Variable relationships visualized
+-  Hypothesis Test Results: p-values and conclusions documented
+
+---
+
+## LinkedIn Post Requirement
+
+Post published with tag @AnalystLab Africa featuring statistical insight from analysis.
+
+**Sample insight:** "On the Titanic, gender was a stronger predictor of survival than wealth. A 3rd-class woman had better odds than a 1st-class man. Sometimes, protocol matters more than resources. 
+
+---
+
+## Conclusion
+
+Week 3 provided hands-on experience with statistical hypothesis testing, probability distributions, and causal inference. Both datasets demonstrated that real-world data is rarely normally distributed, requiring appropriate non-parametric tests. Statistical significance was proven for key relationships in both domains.
