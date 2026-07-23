@@ -277,10 +277,15 @@ Post published with tag @AnalystLab Africa featuring statistical insight from an
 
 **Sample insight:** "On the Titanic, gender was a stronger predictor of survival than wealth. A 3rd-class woman had better odds than a 1st-class man. Sometimes, protocol matters more than resources. 
 
+<<<<<<< HEAD
+=======
+---
+>>>>>>> 35a0a35 (Week 4 Completed)
 
 ## Conclusion
 
 Week 3 provided hands-on experience with statistical hypothesis testing, probability distributions, and causal inference. Both datasets demonstrated that real-world data is rarely normally distributed, requiring appropriate non-parametric tests. Statistical significance was proven for key relationships in both domains.
+<<<<<<< HEAD
 
 
 
@@ -421,3 +426,5 @@ Both models demonstrate effective supervised learning:
 ---
 
 
+=======
+>>>>>>> 35a0a35 (Week 4 Completed)
