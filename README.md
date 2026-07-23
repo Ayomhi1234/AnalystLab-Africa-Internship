@@ -277,8 +277,147 @@ Post published with tag @AnalystLab Africa featuring statistical insight from an
 
 **Sample insight:** "On the Titanic, gender was a stronger predictor of survival than wealth. A 3rd-class woman had better odds than a 1st-class man. Sometimes, protocol matters more than resources. 
 
----
 
 ## Conclusion
 
 Week 3 provided hands-on experience with statistical hypothesis testing, probability distributions, and causal inference. Both datasets demonstrated that real-world data is rarely normally distributed, requiring appropriate non-parametric tests. Statistical significance was proven for key relationships in both domains.
+
+
+
+# Model Evaluation Report - Week 4 Supervised Learning
+
+## Executive Summary
+This report evaluates two supervised learning models: Logistic Regression for passenger survival prediction (Titanic) and Linear Regression for house price prediction (House Prices). Both models were trained and tested on preprocessed datasets with 80/20 train/test splits.
+
+---
+
+## 1. Titanic Dataset - Logistic Regression Model
+
+### Dataset Overview
+- **Samples:** 891 passengers
+- **Target:** Survived (1 = Survived, 0 = Did not survive)
+- **Features:** Pclass, Sex, Age, SibSp, Parch, Fare, Embarked
+
+### Steps Taken
+1. Loaded Titanic dataset
+2. Data cleaning: Handled missing values (Age: median imputation, Embarked: mode imputation, Cabin: dropped)
+3. Feature engineering: Created Age_Bin for analysis
+4. Encoded categorical variables: Sex, Pclass, Embarked (LabelEncoder)
+5. Selected features and target
+6. Train/test split: 80/20 (test_size=0.2, random_state=42)
+7. Trained Logistic Regression model
+8. Made predictions on test data
+9. Evaluated with Accuracy Score and Classification Report
+
+### Model Performance
+
+**Accuracy: 0.81 (81%)**
+
+| Class | Precision | Recall | F1-Score | Support |
+|-------|-----------|--------|----------|---------|
+| 0 (Did not survive) | 0.83 | 0.86 | 0.84 | 105 |
+| 1 (Survived) | 0.79 | 0.74 | 0.76 | 74 |
+| **Overall** | | | **0.81** | **179** |
+| Macro Avg | 0.81 | 0.80 | 0.80 | 179 |
+| Weighted Avg | 0.81 | 0.81 | 0.81 | 179 |
+
+### Performance Interpretation
+- **Accuracy 81%:** Model correctly predicts survival 81% of the time.
+- **Precision (79-83%):** When model predicts a class, it's correct 79-83% of the time.
+- **Recall (74-86%):** Model catches 74-86% of actual survivors and non-survivors.
+- **F1-Score (0.76-0.84):** Good balance between precision and recall.
+
+### Challenges Encountered
+- Class imbalance: More non-survivors (105) than survivors (74) in test set
+- Survivor recall lower (74%) than non-survivor recall (86%) due to class imbalance
+- Some survivors missed by model predictions
+
+### Key Insights
+1. Gender was the strongest predictor of survival (from Week 1–3 EDA)
+2. Model performs well on both classes despite imbalance
+3. Strong precision indicates low false positives (reliable predictions)
+4. Logistic Regression is effective for binary classification on Titanic data
+
+---
+
+## 2. House Prices Dataset - Linear Regression Model
+
+### Dataset Overview
+- **Samples:** Property listings with price data
+- **Target:** Price (house price)
+- **Features:** Area, Bedrooms, Bathrooms, Stories, Mainroad, Guestroom, Basement, Hotwaterheating, Airconditioning, Parking, Prefarea, Furnishingstatus
+
+### Steps Taken
+1. Loaded House Prices dataset
+2. Data cleaning: Checked for missing values (none found)
+3. Encoded categorical variables using LabelEncoder: Mainroad, Guestroom, Basement, Hotwaterheating, Airconditioning, Parking, Prefarea, Furnishingstatus
+4. Selected features and target (Price)
+5. Train/test split: 80/20 (test_size=0.2, random_state=42)
+6. Trained Linear Regression model
+7. Made predictions on test data
+8. Evaluated with RMSE
+
+### Model Performance
+
+**RMSE: 1,331,071**
+
+### Performance Interpretation
+- **RMSE 1,331,071:** Model predictions deviate by approximately 1.33 million on average from actual prices.
+- **Error Margin:** Given house prices range from 11–13 million, the error represents ~10% average deviation, which is reasonable.
+- **Meaning:** For any predicted price, expect actual house price to differ by ~1.33 million on average.
+
+### Challenges Encountered
+- House price data may contain outliers that increase RMSE
+- Some features may have weak predictive power
+- Price variations influenced by market factors beyond available features
+
+### Key Insights
+1. Model captures general price trends reasonably well
+2. Area, bedrooms, bathrooms, and parking are likely strong price predictors (from Week 1–3 analysis)
+3. Acceptable RMSE indicates the model can be used for price estimation
+4. Linear Regression is appropriate for continuous target (price) prediction
+
+---
+
+## 3. Comparative Analysis
+
+| Aspect | Titanic (Classification) | House Prices (Regression) |
+|--------|--------------------------|--------------------------|
+| **Model Type** | Logistic Regression | Linear Regression |
+| **Task Type** | Binary Classification | Continuous Prediction |
+| **Metric** | Accuracy (81%) | RMSE (1.33M) |
+| **Performance** | Good (81% correct predictions) | Acceptable (~10% error margin) |
+| **Imbalance** | Class imbalance (2:1 ratio) | No significant imbalance |
+| **Model Complexity** | Lower (binary outcome) | Higher (continuous values) |
+
+---
+
+## 4. Conclusions
+
+### Titanic Model
+- Logistic Regression successfully predicts survival with 81% accuracy
+- Model is reliable for both survivor and non-survivor prediction
+- Gender and class remain strongest predictors of survival
+
+### House Prices Model
+- Linear Regression captures price patterns with ~10% error margin
+- Model is suitable for price estimation in real-world applications
+- Feature engineering and additional data could further improve accuracy
+
+### Overall Assessment
+Both models demonstrate effective supervised learning:
+- **Classification (Titanic):** Binary prediction with strong performance
+- **Regression (House Prices):** Continuous prediction with acceptable error
+
+---
+
+## 5. Recommendations for Future Work
+
+1. **Titanic:** Address class imbalance through oversampling/undersampling for higher survivor recall
+2. **House Prices:** Test other regression models (Ridge, Lasso, Random Forest) to compare RMSE
+3. Both: Cross-validation for more robust performance estimates
+4. Both: Feature importance analysis to identify most impactful predictors
+
+---
+
+
