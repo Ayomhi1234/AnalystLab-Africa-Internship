@@ -279,9 +279,6 @@ Post published with tag @AnalystLab Africa featuring statistical insight from an
 
 
 
----
- Week 4 Completed : SUPERVISED LEARNING
-
 ## Conclusion
 
 Week 3 provided hands-on experience with statistical hypothesis testing, probability distributions, and causal inference. Both datasets demonstrated that real-world data is rarely normally distributed, requiring appropriate non-parametric tests. Statistical significance was proven for key relationships in both domains.
