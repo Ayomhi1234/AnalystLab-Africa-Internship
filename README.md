@@ -680,3 +680,185 @@ Total combinations tested: 36 per model
 
 ---
 
+# Week 6: Feature Engineering & Model Optimization
+## Titanic Survival Prediction
+
+PROJECT OVERVIEW
+
+This project demonstrates a complete machine learning optimization pipeline on the Titanic dataset. The workflow engineers new features, selects the most relevant variables, and applies hyperparameter tuning to improve model performance.
+
+DATASET
+
+Dataset: Titanic - Machine Learning from Disaster
+- Source: Kaggle
+- Total samples: 891 passengers
+- Features: 12 original
+- Target: Survived (binary classification)
+
+METHODOLOGY
+
+STEP 1: FEATURE ENGINEERING
+
+Created 5 new features from raw columns:
+
+1. Title - Extracted from passenger names (Mr., Mrs., Miss., Master., Rare)
+   Rationale: Social status correlates with survival likelihood
+
+2. FarePerPerson - Fare / (FamilySize) 
+   Rationale: Normalized fare accounting for group travel
+
+3. AgeGroup - Binned age into Child, Teen, Adult, Senior
+   Rationale: Age patterns affect survival differently by group
+
+4. FamilySize - SibSp + Parch + 1
+   Rationale: Family dynamics influence survival chances
+
+5. IsAlone - Binary flag for solo travelers
+   Rationale: Solo travelers had different survival outcomes
+
+STEP 2: FEATURE TRANSFORMATION
+
+Applied StandardScaler to all numeric features:
+- Normalized to mean=0, standard deviation=1
+- Reason: Ensures equal contribution across features
+
+Handled missing values:
+- Age: Median imputation
+- Fare: Median imputation
+- Embarked: Mode imputation
+
+Applied Label Encoding to categorical features (Sex, Title, Embarked)
+
+STEP 3: FEATURE SELECTION
+
+Method: Correlation analysis + Random Forest feature importance
+
+Top 8 features selected:
+1. Sex (0.204 importance)
+2. Age (0.176 importance)
+3. Fare (0.157 importance)
+4. FarePerPerson (0.153 importance)
+5. Title (0.106 importance)
+6. Pclass (0.059 importance)
+7. FamilySize (0.046 importance)
+8. AgeGroup (0.025 importance)
+
+Reasoning: Selected features with highest combined importance and correlation with Survived variable. Reduced from 12 to 8 features.
+
+STEP 4: HYPERPARAMETER TUNING
+
+Baseline Model: Logistic Regression (default parameters)
+Optimized Model: Random Forest Classifier
+
+Grid Search parameters tested:
+- n_estimators: [50, 100, 200]
+- max_depth: [5, 10, 15]
+- min_samples_split: [2, 5, 10]
+- min_samples_leaf: [1, 2, 4]
+- Total combinations: 108
+
+Cross-validation: 5-fold
+Scoring metric: ROC-AUC
+
+Best parameters found:
+- n_estimators: 200
+- max_depth: 5
+- min_samples_split: 5
+- min_samples_leaf: 1
+- Best CV ROC-AUC: 0.8643
+
+STEP 5: PERFORMANCE EVALUATION
+
+Results
+
+| Metric | Baseline (Logistic Regression) | Optimized (Random Forest) | Change |
+|--------|-------|--------|--------|
+| Accuracy | 0.8101 | 0.7989 | -1.38% |
+| Precision | 0.8030 | 0.7879 | -1.89% |
+| Recall | 0.7162 | 0.7027 | -1.89% |
+| F1 Score | 0.7571 | 0.7429 | -1.89% |
+| ROC-AUC | 0.7962 | 0.7847 | -1.45% |
+
+Test set: 179 samples
+Training set: 712 samples
+
+KEY FINDINGS
+
+1. Feature engineering successfully created domain-relevant features (Title, FarePerPerson, FamilySize)
+
+2. Feature selection reduced dimensionality by 33% while capturing main predictive signal
+
+3. Optimized Random Forest actually underperformed baseline Logistic Regression across all metrics
+
+4. Possible reasons for performance decrease:
+   - Logistic Regression was already well-tuned for this dataset
+   - Random Forest with selected 8 features may have insufficient depth (max_depth=5)
+   - Feature set may be too small for Random Forest to leverage ensemble advantages
+   - Grid Search may not have explored optimal parameter space
+
+5. Cross-validation score (0.8643) higher than test score (0.7847), indicating slight overfitting
+
+ANALYSIS
+
+The baseline Logistic Regression (Accuracy: 81.01%) was difficult to beat. Despite testing 108 parameter combinations, Random Forest did not improve performance. This suggests:
+
+- Logistic Regression is inherently well-suited for this binary classification problem
+- The 8 selected features capture linear relationships effectively
+- Random Forest needs more features to exploit non-linear patterns
+- Grid Search parameters may have been too conservative (max_depth capped at 15)
+
+This is a realistic outcome - not all optimization attempts succeed. The value lies in systematic evaluation rather than guaranteed improvement.
+
+VISUALIZATIONS
+
+Generated outputs:
+1. titanic_optimization_results.png - Contains:
+   - Feature correlation heatmap
+   - Feature importance chart (Random Forest)
+   - Before/after performance comparison
+   - Confusion matrix (optimized model)
+
+RECOMMENDATIONS FOR IMPROVEMENT
+
+1. Try different model algorithms:
+   - Gradient Boosting (XGBoost, LightGBM)
+   - Support Vector Machines
+   - Neural Networks
+
+2. Expand hyperparameter search:
+   - Increase max_depth range (15, 20, 25)
+   - Test more n_estimators values
+   - Adjust min_samples_split and min_samples_leaf more aggressively
+
+3. Add more engineered features:
+   - Interaction features (Age * Sex, Pclass * Fare)
+   - Derived features from text/dates
+   - Feature polynomials (Fare^2, Age^2)
+
+4. Address class imbalance:
+   - Check if classes are imbalanced
+   - Use class_weight='balanced' in Random Forest
+   - Apply SMOTE oversampling
+
+5. Ensemble methods:
+   - Combine Logistic Regression + Random Forest predictions
+   - Stack multiple models
+   - Voting classifier with diverse models
+
+6. Feature engineering direction:
+   - Create more interaction features
+   - Test polynomial features
+   - Domain-specific transformations
+
+CONCLUSION
+
+This Week 6 project completed the full ML pipeline: feature engineering, transformation, selection, and hyperparameter tuning. While the optimized Random Forest did not outperform baseline Logistic Regression, the systematic approach provided valuable insights into model performance, parameter sensitivity, and optimization limitations.
+
+The key learning: Optimization requires understanding when NOT to optimize further. Logistic Regression achieved 81% accuracy - a strong baseline that proved difficult to improve.
+
+OUTPUTS
+
+1. titanic_optimization_results.png - 4-panel visualization
+2. Console outputs documented above
+3. Best Random Forest model (grid_rf.best_estimator_)
+
