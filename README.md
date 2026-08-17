@@ -858,7 +858,35 @@ The key learning: Optimization requires understanding when NOT to optimize furth
 
 OUTPUTS
 
+# WEEK 7: Titanic Survival Prediction API
+
+## Project Description
+A machine learning API that predicts passenger survival on the Titanic using a trained classification model. The API accepts passenger details and returns survival predictions with confidence probabilities.
+
+## Problem Statement
+Given historical Titanic passenger data, predict whether a passenger would have survived based on features like passenger class, age, ticket fare, and port of embarkation.
+
+## Model Used
+- **Algorithm**: Ensemble method (Random Forest/Decision Tree Classifier)
+- **Training Data**: Titanic dataset (from Weeks 4-6)
+- **Target Variable**: Survived (Binary: 0 = Did Not Survive, 1 = Survived)
+
+
+## Technologies Used
+- Python 3.14+
+- FastAPI (API framework)
+- Joblib (model persistence)
+- Uvicorn (ASGI server)
+- NumPy (data processing)
+- Pydantic (input validation)
+- Scikit-learn (machine learning)
+
+## Project Structure
 1. titanic_optimization_results.png - 4-panel visualization
 2. Console outputs documented above
 3. Best Random Forest model (grid_rf.best_estimator_)
+
+https://titanic-survival-prediction-web-ml.streamlit.app/
+
+THIS IS THE LINK TO THE DEPLOYED MODEL
 
